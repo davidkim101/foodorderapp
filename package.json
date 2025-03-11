@@ -1,0 +1,17 @@
+{
+  "name": "foodorderapp",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=22 <23"
+  },
+  "description": "",
+  "scripts": {
+    "dev": "cd frontend && npm start & cd backend && npm start",
+    "start": "cd backend/built && node server.js",
+    "prebuild": "cd backend && npm run build",
+    "build": "cd frontend && npm run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
