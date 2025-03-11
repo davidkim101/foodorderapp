@@ -29,9 +29,9 @@ router.post(
     // use destructuring assignment
     const { email, password } = req.body;
     // const user = sample_users.find(user => user.email === body.email && user.password === body.password);
-    const user = await UserModel.findOne({ email, password });
+    const user = await UserModel.findOne({ email });
 
-    if (user) {
+    if (user && (await brcrypt.compare(password, user.password))) {
       res.send(generateTokenResponse(user));
     } else {
       res.status(400).send("User name or password is not valid!");
@@ -69,6 +69,7 @@ router.post(
 const generateTokenResponse = (user: User) => {
   const token = jwt.sign(
     {
+      id: user.id,
       email: user.email,
       isAdmin: user.isAdmin,
     },
