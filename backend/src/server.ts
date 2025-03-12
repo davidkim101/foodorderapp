@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(
   cors({
     credentials: true,
-    origin: ["http://localhost:4200"],
+    origin: ["http://localhost:4200", "https://foodexpress-yq9e.onrender.com"],
   })
 );
 
@@ -29,7 +29,7 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-const port = 5000;
+const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log("Website served on http://localhost:" + port);
 });
